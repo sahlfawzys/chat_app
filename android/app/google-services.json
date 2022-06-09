@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "337280794167",
+    "project_id": "chatapp-f149b",
+    "storage_bucket": "chatapp-f149b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:337280794167:android:a2c67cc9c61d3021ca89b2",
+        "android_client_info": {
+          "package_name": "com.example.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "337280794167-tkd8lg0u95129g9mfoj9s2f2sqinrqoo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chatapp",
+            "certificate_hash": "a2d79612dde0b828a481d25aa2733e5616f466a9"
+          }
+        },
+        {
+          "client_id": "337280794167-m8korncj3tu7k08am6ju7g0819m38tb4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDl2lco2u1c3FYlfgJpxKPCl_lGqyu-Wzs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "337280794167-m8korncj3tu7k08am6ju7g0819m38tb4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:337280794167:android:2f7adefacd812c4dca89b2",
+        "android_client_info": {
+          "package_name": "com.example.chats"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "337280794167-m8korncj3tu7k08am6ju7g0819m38tb4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDl2lco2u1c3FYlfgJpxKPCl_lGqyu-Wzs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "337280794167-m8korncj3tu7k08am6ju7g0819m38tb4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
