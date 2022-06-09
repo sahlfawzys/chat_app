@@ -39,26 +39,26 @@ class ProfileView extends GetView<ProfileController> {
           Container(
             child: Column(
               children: [
-                AvatarGlow(
-                  endRadius: 110,
-                  glowColor: Colors.black,
-                  duration: Duration(seconds: 2),
-                  child: Container(
-                    margin: EdgeInsets.all(15),
-                    width: 175,
-                    height: 175,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(200),
-                      child: authC.user.value.photoUrl! == 'noimage'
-                          ? Image.asset(
-                              'assets/logo/noimage.png',
-                              fit: BoxFit.cover,
-                            )
-                          : Image.network(authC.user.value.photoUrl!,
-                              fit: BoxFit.cover),
-                    ),
-                  ),
-                ),
+                Obx(() => AvatarGlow(
+                      endRadius: 110,
+                      glowColor: Colors.black,
+                      duration: Duration(seconds: 2),
+                      child: Container(
+                        margin: EdgeInsets.all(15),
+                        width: 175,
+                        height: 175,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(200),
+                          child: authC.user.value.photoUrl! == 'noimage'
+                              ? Image.asset(
+                                  'assets/logo/noimage.png',
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.network(authC.user.value.photoUrl!,
+                                  fit: BoxFit.cover),
+                        ),
+                      ),
+                    )),
                 Obx(
                   () => Text(
                     '${authC.user.value.name!}',

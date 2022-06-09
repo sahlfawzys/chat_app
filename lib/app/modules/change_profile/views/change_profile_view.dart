@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:chatapp/app/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
@@ -114,9 +116,54 @@ class ChangeProfileView extends GetView<ChangeProfileController> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('No image'),
+                  GetBuilder<ChangeProfileController>(
+                    builder: (c) => c.pickedImage != null
+                        ? Column(
+                            children: [
+                              Container(
+                                height: 100,
+                                width: 100,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  image: DecorationImage(
+                                    image: FileImage(
+                                      File(c.pickedImage!.path),
+                                    ),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  IconButton(
+                                      onPressed: () => c.resetImage(),
+                                      icon: Icon(Icons.delete)),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  TextButton(
+                                    onPressed: () => c
+                                        .uploadImage(authC.user.value.uid!)
+                                        .then((hasilKembalian) {
+                                      if (hasilKembalian != null) {
+                                        authC.updatePhotoUrl(hasilKembalian);
+                                      }
+                                    }),
+                                    child: Text(
+                                      'Upload',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )
+                        : Text('No image'),
+                  ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () => controller.selectImage(),
                     child: Text(
                       'Chosen',
                       style: TextStyle(

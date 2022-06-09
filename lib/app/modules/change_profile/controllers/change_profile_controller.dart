@@ -1,19 +1,59 @@
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ChangeProfileController extends GetxController {
-  //TODO: Implement ChangeProfileController
-
   late TextEditingController emailC;
   late TextEditingController nameC;
   late TextEditingController statusC;
+  late ImagePicker imagePicker;
+
+  XFile? pickedImage = null;
+
+  FirebaseStorage storage = FirebaseStorage.instance;
+
+  Future<String?> uploadImage(String uid) async {
+    Reference storageRef = storage.ref('$uid');
+    File file = File(pickedImage!.path);
+
+    try {
+      await storageRef.putFile(file);
+      resetImage();
+      return await storageRef.getDownloadURL();
+    } catch (err) {
+      return null;
+    }
+  }
+
+  void resetImage() {
+    pickedImage = null;
+    update();
+  }
+
+  void selectImage() async {
+    try {
+      final dataImage =
+          await imagePicker.pickImage(source: ImageSource.gallery);
+      if (dataImage != null) {
+        pickedImage = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImage = null;
+      update();
+    }
+  }
 
   @override
   void onInit() {
-    // TODO: implement onInit
     emailC = TextEditingController();
     nameC = TextEditingController();
     statusC = TextEditingController();
+    imagePicker = ImagePicker();
     super.onInit();
   }
 

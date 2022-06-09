@@ -240,11 +240,11 @@ class AuthController extends GetxController {
     );
   }
 
-  void updateStatus(String status) {
+  void updateStatus(String status) async {
     CollectionReference users = firestore.collection('users');
     String date = DateTime.now().toIso8601String();
 
-    users.doc(_currentUser!.email).update({
+    await users.doc(_currentUser!.email).update({
       'status': status,
       'lastSignInTime':
           userCredential!.user!.metadata.lastSignInTime!.toIso8601String(),
@@ -262,6 +262,27 @@ class AuthController extends GetxController {
     Get.defaultDialog(
       title: 'Success',
       middleText: 'Status Updated',
+    );
+  }
+
+  void updatePhotoUrl(String url) async {
+    CollectionReference users = firestore.collection('users');
+    String date = DateTime.now().toIso8601String();
+
+    await users.doc(_currentUser!.email).update({
+      'photoUrl': url,
+      'updatedTime': date,
+    });
+
+    user.update((user) {
+      user!.photoUrl = url;
+      user.updatedTime = date;
+    });
+
+    user.refresh();
+    Get.defaultDialog(
+      title: 'Success',
+      middleText: 'Photo profile updated',
     );
   }
 
