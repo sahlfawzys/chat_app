@@ -110,8 +110,10 @@ class AuthController extends GetxController {
   Future<void> login() async {
     try {
       await _googleSignIn.signOut();
+      print('signin');
       await _googleSignIn.signIn().then((value) => _currentUser = value);
       final isSignIn = await _googleSignIn.isSignedIn();
+      print('try');
 
       if (isSignIn) {
         final googleAuth = await _currentUser!.authentication;
@@ -157,6 +159,7 @@ class AuthController extends GetxController {
                 .toIso8601String(),
           });
         }
+        print('checkUser');
 
         final currUser = await users.doc(_currentUser!.email).get();
         final currUserData = currUser.data() as Map<String, dynamic>;
@@ -190,7 +193,7 @@ class AuthController extends GetxController {
         }
 
         user.refresh();
-
+        print(user.value.email!);
         isAuth.value = true;
         Get.offAllNamed(Routes.HOME);
 

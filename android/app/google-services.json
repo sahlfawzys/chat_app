@@ -37,6 +37,13 @@
             {
               "client_id": "337280794167-m8korncj3tu7k08am6ju7g0819m38tb4.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "337280794167-9g9ko4e9qirt9o3mqp273hofkta7oe1s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.chats"
+              }
             }
           ]
         }
@@ -44,7 +51,7 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:337280794167:android:2f7adefacd812c4dca89b2",
+        "mobilesdk_app_id": "1:337280794167:android:0b25b2e54cdaac7eca89b2",
         "android_client_info": {
           "package_name": "com.example.chats"
         }
@@ -66,6 +73,13 @@
             {
               "client_id": "337280794167-m8korncj3tu7k08am6ju7g0819m38tb4.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "337280794167-9g9ko4e9qirt9o3mqp273hofkta7oe1s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.chats"
+              }
             }
           ]
         }

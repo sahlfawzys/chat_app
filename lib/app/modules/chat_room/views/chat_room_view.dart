@@ -37,11 +37,12 @@ class ChatRoomView extends GetView<ChatRoomController> {
                 child: StreamBuilder<DocumentSnapshot<Object?>>(
                   stream: controller.streamFriendData(
                       (Get.arguments as Map<String, dynamic>)['friendEmail']),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.active) {
-                      var dataFriend =
-                          snapshot.data!.data() as Map<String, dynamic>;
-                      if (dataFriend['photoUrl'] == 'noimage') {
+                  builder: (context, snapshotPhoto) {
+                    if (snapshotPhoto.connectionState ==
+                        ConnectionState.active) {
+                      var friendPhoto =
+                          snapshotPhoto.data!.data() as Map<String, dynamic>;
+                      if (friendPhoto['photoUrl'] == 'noimage') {
                         return ClipRRect(
                           borderRadius: BorderRadius.circular(50),
                           child: Image.asset(
@@ -53,7 +54,7 @@ class ChatRoomView extends GetView<ChatRoomController> {
                         return ClipRRect(
                           borderRadius: BorderRadius.circular(50),
                           child: Image.network(
-                            dataFriend['photoUrl'],
+                            friendPhoto['photoUrl'],
                             fit: BoxFit.cover,
                           ),
                         );
@@ -75,9 +76,10 @@ class ChatRoomView extends GetView<ChatRoomController> {
         title: StreamBuilder<DocumentSnapshot<Object?>>(
             stream: controller.streamFriendData(
                 (Get.arguments as Map<String, dynamic>)['friendEmail']),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.active) {
-                var dataFriend = snapshot.data!.data() as Map<String, dynamic>;
+            builder: (context, snapshotData) {
+              if (snapshotData.connectionState == ConnectionState.active) {
+                var dataFriend =
+                    snapshotData.data!.data() as Map<String, dynamic>;
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -129,9 +131,12 @@ class ChatRoomView extends GetView<ChatRoomController> {
               child: Container(
                 child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
                   stream: controller.streamChat(chat_id),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.active) {
-                      var alldata = snapshot.data!.docs;
+                  builder: (context, snapshotChat) {
+                    if (snapshotChat.connectionState ==
+                        ConnectionState.active) {
+                      var alldata = snapshotChat.data!.docs;
+                      print('alldata => $alldata');
+                      print(alldata.length);
                       Timer(
                         Duration.zero,
                         () => controller.scrollC.jumpTo(
@@ -154,7 +159,7 @@ class ChatRoomView extends GetView<ChatRoomController> {
                                   ),
                                 ),
                                 itemChat(
-                                  msg: '${alldata[index]['msg']}',
+                                  message: '${alldata[index]['message']}',
                                   isSender: alldata[index]['pengirim'] ==
                                           authC.user.value.email
                                       ? true
@@ -167,7 +172,7 @@ class ChatRoomView extends GetView<ChatRoomController> {
                             if (alldata[index]['groupTime'] ==
                                 alldata[index - 1]['groupTime']) {
                               return itemChat(
-                                msg: '${alldata[index]['msg']}',
+                                message: '${alldata[index]['message']}',
                                 isSender: alldata[index]['pengirim'] ==
                                         authC.user.value.email
                                     ? true
@@ -184,7 +189,7 @@ class ChatRoomView extends GetView<ChatRoomController> {
                                     ),
                                   ),
                                   itemChat(
-                                    msg: '${alldata[index]['msg']}',
+                                    message: '${alldata[index]['message']}',
                                     isSender: alldata[index]['pengirim'] ==
                                             authC.user.value.email
                                         ? true
@@ -317,12 +322,12 @@ class itemChat extends StatelessWidget {
   const itemChat({
     Key? key,
     required this.isSender,
-    required this.msg,
+    required this.message,
     required this.time,
   }) : super(key: key);
 
   final bool isSender;
-  final String msg;
+  final String message;
   final String time;
 
   @override
@@ -346,7 +351,7 @@ class itemChat extends StatelessWidget {
             ),
             padding: EdgeInsets.all(15),
             child: Text(
-              '$msg',
+              '$message',
               style: TextStyle(color: Colors.white),
             ),
           ),

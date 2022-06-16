@@ -48,7 +48,7 @@ class UpdateStatusView extends GetView<UpdateStatusController> {
             Container(
               width: Get.width,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () => authC.updateStatus(controller.statusC.text),
                 child: Text(
                   'Update',
                   style: TextStyle(

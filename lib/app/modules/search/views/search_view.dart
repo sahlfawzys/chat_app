@@ -68,7 +68,7 @@ class SearchView extends GetView<SearchController> {
         preferredSize: Size.fromHeight(140),
       ),
       body: Obx(
-        () => controller.tempSearch.length == 0
+        () => controller.tempSearch.value.length == 0
             ? Center(
                 child: Container(
                   width: Get.width * 0.7,

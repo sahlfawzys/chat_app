@@ -37,12 +37,17 @@ class SearchController extends GetxController {
       if (queryAwal.length != 0) {
         tempSearch.value = [];
         queryAwal.forEach((element) {
-          if (element['name'].startsWith(capitalized)) {
+          print(capitalized);
+          if ((element['name'] as String)
+              .toLowerCase()
+              .startsWith(capitalized.toLowerCase())) {
+            print(element['name']);
             tempSearch.add(element);
           }
         });
       }
     }
+
     queryAwal.refresh();
     tempSearch.refresh();
   }
