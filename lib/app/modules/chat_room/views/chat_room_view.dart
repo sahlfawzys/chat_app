@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:chatapp/app/controllers/auth_controller.dart';
+import 'package:chatapp/app/utils/color.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class ChatRoomView extends GetView<ChatRoomController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red[900],
+        backgroundColor: ColorApp.secondary,
         leadingWidth: 100,
         leading: InkWell(
           onTap: () {
@@ -129,6 +130,7 @@ class ChatRoomView extends GetView<ChatRoomController> {
           children: [
             Expanded(
               child: Container(
+                color: ColorApp.primary,
                 child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
                   stream: controller.streamChat(chat_id),
                   builder: (context, snapshotChat) {
@@ -254,7 +256,7 @@ class ChatRoomView extends GetView<ChatRoomController> {
                   SizedBox(width: 10),
                   Material(
                     borderRadius: BorderRadius.circular(100),
-                    color: Colors.red[900],
+                    color: Colors.blue[700],
                     child: InkWell(
                       borderRadius: BorderRadius.circular(100),
                       onTap: () => controller.newChat(

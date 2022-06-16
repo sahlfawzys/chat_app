@@ -1,4 +1,5 @@
 import 'package:chatapp/app/controllers/auth_controller.dart';
+import 'package:chatapp/app/utils/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +15,7 @@ class SearchView extends GetView<SearchController> {
     return Scaffold(
       appBar: PreferredSize(
         child: AppBar(
-          backgroundColor: Colors.red[900],
+          backgroundColor: ColorApp.secondary,
           title: Text('Search'),
           centerTitle: true,
           leading: IconButton(
@@ -67,63 +68,66 @@ class SearchView extends GetView<SearchController> {
         ),
         preferredSize: Size.fromHeight(140),
       ),
-      body: Obx(
-        () => controller.tempSearch.value.length == 0
-            ? Center(
-                child: Container(
-                  width: Get.width * 0.7,
-                  height: Get.height * 0.7,
-                  child: Lottie.asset('assets/lottie/empty.json'),
+      body: Container(
+        color: ColorApp.primary,
+        child: Obx(
+          () => controller.tempSearch.value.length == 0
+              ? Center(
+                  child: Container(
+                    width: Get.width * 0.7,
+                    height: Get.height * 0.7,
+                    child: Lottie.asset('assets/lottie/empty.json'),
+                  ),
+                )
+              : ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: controller.tempSearch.length,
+                  itemBuilder: (context, index) => ListTile(
+                    contentPadding: EdgeInsets.symmetric(
+                      vertical: 15,
+                      horizontal: 20,
+                    ),
+                    leading: CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Colors.black26,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: controller.tempSearch[index]['photoUrl'] ==
+                                'noimage'
+                            ? Image.asset(
+                                'assets/logo/noimage.png',
+                                fit: BoxFit.cover,
+                              )
+                            : Image.network(
+                                '${controller.tempSearch[index]['photoUrl']}',
+                                fit: BoxFit.cover,
+                              ),
+                      ),
+                    ),
+                    title: Text(
+                      '${controller.tempSearch[index]['name']}',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    subtitle: Text(
+                      '${controller.tempSearch[index]['email']}',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    trailing: GestureDetector(
+                      onTap: () => authC.addNewConnection(
+                          controller.tempSearch[index]['email']),
+                      child: Chip(
+                        label: Text('Message'),
+                      ),
+                    ),
+                  ),
                 ),
-              )
-            : ListView.builder(
-                padding: EdgeInsets.zero,
-                itemCount: controller.tempSearch.length,
-                itemBuilder: (context, index) => ListTile(
-                  contentPadding: EdgeInsets.symmetric(
-                    vertical: 15,
-                    horizontal: 20,
-                  ),
-                  leading: CircleAvatar(
-                    radius: 30,
-                    backgroundColor: Colors.black26,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child:
-                          controller.tempSearch[index]['photoUrl'] == 'noimage'
-                              ? Image.asset(
-                                  'assets/logo/noimage.png',
-                                  fit: BoxFit.cover,
-                                )
-                              : Image.network(
-                                  '${controller.tempSearch[index]['photoUrl']}',
-                                  fit: BoxFit.cover,
-                                ),
-                    ),
-                  ),
-                  title: Text(
-                    '${controller.tempSearch[index]['name']}',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  subtitle: Text(
-                    '${controller.tempSearch[index]['email']}',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  trailing: GestureDetector(
-                    onTap: () => authC.addNewConnection(
-                        controller.tempSearch[index]['email']),
-                    child: Chip(
-                      label: Text('Message'),
-                    ),
-                  ),
-                ),
-              ),
+        ),
       ),
     );
   }

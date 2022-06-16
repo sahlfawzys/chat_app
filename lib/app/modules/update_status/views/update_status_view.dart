@@ -1,4 +1,5 @@
 import 'package:chatapp/app/controllers/auth_controller.dart';
+import 'package:chatapp/app/utils/color.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -16,7 +17,7 @@ class UpdateStatusView extends GetView<UpdateStatusController> {
           onPressed: () => Get.back(),
           icon: Icon(Icons.arrow_back),
         ),
-        backgroundColor: Colors.red[900],
+        backgroundColor: ColorApp.secondary,
         title: Text('Update Status'),
         centerTitle: true,
       ),
@@ -57,7 +58,7 @@ class UpdateStatusView extends GetView<UpdateStatusController> {
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.red[900],
+                  primary: Colors.blue[700],
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(100),
                   ),
