@@ -1,16 +1,31 @@
-# chats
+# Chats App
 
-A new Flutter project.
+Aplikasi komunikasi antar pengguna secara real-time. Aplikasi dibuat menggunakan Flutter 2 dengan Getx state management. 
 
-## Getting Started
+## Feature
 
-This project is a starting point for a Flutter application.
+- GetX State Management
+- Firebase Auth
+- Firebase Storage
+- Firebase Firestore
 
-A few resources to get you started if this is your first Flutter project:
+## Page
+- Introduction
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+![introduction.jpg](https://github.com/sahlfawzys/chat_app/blob/master/screenshots/photo_2022-07-15_07-09-22.jpg)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- HomePage
+
+![homepage.jpg](https://github.com/sahlfawzys/chat_app/blob/master/screenshots/photo_2022-07-15_07-09-39.jpg)
+
+- Chatroom
+
+![chatroom.jpg](https://github.com/sahlfawzys/chat_app/blob/master/screenshots/photo_2022-07-15_07-08-25.jpg)
+
+- Drawer
+
+![drawer.jpg](https://github.com/sahlfawzys/chat_app/blob/master/screenshots/photo_2022-07-15_07-09-34.jpg)
+
+- Profile
+
+![profile.jpg](https://github.com/sahlfawzys/chat_app/blob/master/screenshots/photo_2022-07-15_07-09-28.jpg)
