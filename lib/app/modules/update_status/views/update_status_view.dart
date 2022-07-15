@@ -18,7 +18,10 @@ class UpdateStatusView extends GetView<UpdateStatusController> {
           icon: Icon(Icons.arrow_back),
         ),
         backgroundColor: ColorApp.secondary,
-        title: Text('Update Status'),
+        title: Text(
+          'Update Status',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         centerTitle: true,
       ),
       body: Padding(

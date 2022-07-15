@@ -89,11 +89,12 @@ class ChatRoomView extends GetView<ChatRoomController> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
+                        color: Colors.white,
                       ),
                     ),
                     Text(
                       dataFriend['status'],
-                      style: TextStyle(fontSize: 13),
+                      style: TextStyle(fontSize: 13, color: Colors.white),
                     ),
                   ],
                 );
@@ -276,6 +277,7 @@ class ChatRoomView extends GetView<ChatRoomController> {
                 ],
               ),
             ),
+            //Emoji
             Obx(
               () => (controller.isShowEmoji.isTrue)
                   ? Container(
@@ -343,7 +345,9 @@ class itemChat extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: Colors.red[900],
+              color: isSender
+                  ? Color.fromARGB(255, 31, 15, 122)
+                  : Color.fromARGB(255, 87, 87, 87),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(15),
                 topRight: Radius.circular(15),
@@ -354,7 +358,7 @@ class itemChat extends StatelessWidget {
             padding: EdgeInsets.all(15),
             child: Text(
               '$message',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white, fontSize: 16),
             ),
           ),
           SizedBox(height: 5),

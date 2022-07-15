@@ -1,5 +1,6 @@
 import 'package:chatapp/app/controllers/auth_controller.dart';
 import 'package:chatapp/app/routes/app_pages.dart';
+import 'package:chatapp/app/utils/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,47 +13,67 @@ class DrawerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: Color.fromARGB(255, 172, 230, 220),
-      child: ListView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          UserAccountsDrawerHeader(
-            accountName: Text(authC.user.value.name!),
-            accountEmail: Text(authC.user.value.email!),
-            currentAccountPicture: authC.user.value.photoUrl! == 'noimage'
-                ? const CircleAvatar(
-                    backgroundImage: AssetImage(
-                    'assets/logo/noimage.png',
-                  ))
-                : CircleAvatar(
-                    backgroundImage: NetworkImage(authC.user.value.photoUrl!),
+          ListView(
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            children: [
+              SizedBox(
+                width: double.maxFinite,
+                child: Center(
+                  child: UserAccountsDrawerHeader(
+                    accountName: Text(authC.user.value.name!),
+                    accountEmail: Text(authC.user.value.email!),
+                    currentAccountPicture:
+                        authC.user.value.photoUrl! == 'noimage'
+                            ? const CircleAvatar(
+                                backgroundImage: AssetImage(
+                                'assets/logo/noimage.png',
+                              ))
+                            : CircleAvatar(
+                                backgroundImage:
+                                    NetworkImage(authC.user.value.photoUrl!),
+                              ),
+                    decoration: BoxDecoration(
+                      color: ColorApp.secondary,
+                    ),
                   ),
-          ),
-          DrawerListTile(
-            iconData: Icons.update,
-            title: 'Update Status',
-            onTilePressed: () => Get.toNamed(Routes.UPDATE_STATUS),
-          ),
-          DrawerListTile(
-            iconData: Icons.account_circle,
-            title: 'Change Profile',
-            onTilePressed: () => Get.toNamed(Routes.CHANGE_PROFILE),
-          ),
-          DrawerListTile(
-            iconData: Icons.contacts,
-            title: 'New Contacts',
-            onTilePressed: () {},
-          ),
-          DrawerListTile(
-            iconData: Icons.bookmark_border,
-            title: 'Saved Message',
-            onTilePressed: () {},
-          ),
-          Column(
-            children: const [
-              Expanded(child: SizedBox()),
+                ),
+              ),
+              DrawerListTile(
+                iconData: Icons.update,
+                title: 'Update Status',
+                onTilePressed: () {
+                  Get.back();
+                  Get.toNamed(Routes.UPDATE_STATUS);
+                },
+              ),
+              DrawerListTile(
+                iconData: Icons.account_circle,
+                title: 'Change Profile',
+                onTilePressed: () {
+                  Get.back();
+                  Get.toNamed(Routes.CHANGE_PROFILE);
+                },
+              ),
+              DrawerListTile(
+                iconData: Icons.contacts,
+                title: 'New Contacts',
+                onTilePressed: () {},
+              ),
+              DrawerListTile(
+                iconData: Icons.bookmark_border,
+                title: 'Saved Message',
+                onTilePressed: () {},
+              ),
             ],
           ),
+          Expanded(child: SizedBox()),
           ElevatedButton(
-              style: ElevatedButton.styleFrom(primary: Colors.blue[700]),
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.blue[700], padding: EdgeInsets.zero),
               onPressed: () => authC.logout(),
               child: const Center(child: Text('LOGOUT'))),
         ],

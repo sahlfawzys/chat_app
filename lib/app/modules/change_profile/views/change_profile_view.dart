@@ -23,7 +23,10 @@ class ChangeProfileView extends GetView<ChangeProfileController> {
           icon: Icon(Icons.arrow_back),
         ),
         backgroundColor: ColorApp.secondary,
-        title: Text('Change Profile'),
+        title: Text(
+          'Change Profile',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         centerTitle: true,
       ),
       body: Container(

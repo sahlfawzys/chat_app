@@ -16,12 +16,13 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chats'),
+        title: const Text('Chats',
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
         backgroundColor: ColorApp.secondary,
       ),
       drawer: DrawerScreen(),
       body: Container(
-        color: ColorApp.secondary,
+        color: ColorApp.primary,
         child: Column(
           children: [
             Expanded(

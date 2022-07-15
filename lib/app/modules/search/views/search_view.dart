@@ -16,7 +16,10 @@ class SearchView extends GetView<SearchController> {
       appBar: PreferredSize(
         child: AppBar(
           backgroundColor: ColorApp.secondary,
-          title: Text('Search'),
+          title: Text(
+            'Search',
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          ),
           centerTitle: true,
           leading: IconButton(
             onPressed: () => Get.back(),
